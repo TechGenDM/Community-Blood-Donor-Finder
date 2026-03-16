@@ -45,4 +45,4 @@ A modern, responsive web application designed to bridge the gap between blood do
 ---
 
 
-# 🪡 Made By ❤️ TechGen_DM
+# 🪡 Made with ❤️ by [TechGen_DM](https://github.com/TechGenDM)
