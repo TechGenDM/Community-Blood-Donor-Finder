@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import StatsHeader from './components/StatsHeader';
-import FilterBar from './components/FilterBar';
 import DonorList from './components/DonorList';
 import SkeletonCard from './components/SkeletonCard';
+import HeroSection from './components/HeroSection';
 
 const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
@@ -58,14 +57,13 @@ function App() {
   return (
     <div className="min-h-screen p-4 md:p-6 lg:p-8 bg-gradient-to-br from-[#F5F5F5] to-[#EBEBEB]">
       <div className="max-w-7xl mx-auto space-y-6">
-        <StatsHeader availableCount={availableCount} />
-        
-        <FilterBar 
+        <HeroSection 
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           selectedBloodGroup={selectedBloodGroup}
           setSelectedBloodGroup={setSelectedBloodGroup}
           bloodGroups={BLOOD_GROUPS}
+          availableCount={availableCount}
         />
 
         {loading ? (

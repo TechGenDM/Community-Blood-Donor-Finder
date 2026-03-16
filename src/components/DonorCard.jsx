@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react';
 
-export default function DonorCard({ donor, searchQuery }) {
+export default function DonorCard({ donor, searchQuery, index = 0 }) {
   const [requestSent, setRequestSent] = useState(() => {
     return localStorage.getItem(`donor_request_${donor.id}`) === 'true';
   });
@@ -23,7 +23,10 @@ export default function DonorCard({ donor, searchQuery }) {
   };
 
   return (
-    <div className="glass-panel rounded-2xl p-6 relative overflow-hidden flex flex-col h-full hover:-translate-y-1 transition-transform duration-300">
+    <div 
+      className="glass-panel rounded-2xl p-6 relative overflow-hidden flex flex-col h-full hover:-translate-y-1 transition-transform duration-300 animate-fade-in-up"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
       {/* Availability Badge */}
       <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full shadow-sm border border-white">
         {donor.isAvailable ? (
