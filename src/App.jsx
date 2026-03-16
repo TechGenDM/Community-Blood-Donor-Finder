@@ -1,17 +1,25 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import FilterBar from './components/FilterBar';
 import DonorList from './components/DonorList';
 import SkeletonCard from './components/SkeletonCard';
 import HeroSection from './components/HeroSection';
+import Preloader from './components/Preloader';
 
 const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
 function App() {
   const [donors, setDonors] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isEntryLoading, setIsEntryLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBloodGroup, setSelectedBloodGroup] = useState('All');
 
   useEffect(() => {
+    // Artificial 2.5s delay for the premium preloader
+    const entryTimer = setTimeout(() => {
+      setIsEntryLoading(false);
+    }, 2500);
+
     const fetchDonors = async () => {
       try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -36,6 +44,8 @@ function App() {
     };
 
     fetchDonors();
+    
+    return () => clearTimeout(entryTimer);
   }, []);
 
   const filteredDonors = useMemo(() => {
@@ -54,8 +64,12 @@ function App() {
     return donors.filter(d => d.isAvailable).length;
   }, [donors]);
 
+  if (isEntryLoading) {
+    return <Preloader />;
+  }
+
   return (
-    <div className="min-h-screen p-4 md:p-6 lg:p-8 bg-gradient-to-br from-[#F5F5F5] to-[#EBEBEB]">
+    <div className="min-h-screen p-4 md:p-6 lg:p-8 bg-gradient-to-br from-[#F5F5F5] to-[#EBEBEB] animate-fade-in">
       <div className="max-w-7xl mx-auto space-y-6">
         <HeroSection 
           searchQuery={searchQuery}
