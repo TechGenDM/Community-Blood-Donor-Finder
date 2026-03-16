@@ -1,16 +1,46 @@
-# React + Vite
+# 🩸 Community Blood Donor Finder
+### *Connecting Heroes with Those in Need*
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
-Currently, two official plugins are available:
+A modern, responsive web application designed to bridge the gap between blood donors and patients. This project features a professional medical UI with **Glassmorphism** aesthetics, real-time filtering, and an interactive request system.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **🔍 Smart Search:** Find donors instantly by searching for their Name or City.
+* **💊 Blood Group Filtering:** Interactive "Pill Filters" to quickly isolate specific blood types (A+, B+, O-, etc.).
+* **📡 Real-time Data:** Fetches live user data from JSONPlaceholder API and enriches it with medical metadata.
+* **🟢 Live Availability:** Dynamic "Pulse" indicators showing donor availability status.
+* **✅ One-Tap Request:** Interactive "Request Help" system with immediate visual feedback and state persistence.
+* **🎨 Glassmorphic UI:** A clean, modern interface using backdrop blurs and soft shadows for a premium feel.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+* **Framework:** React.js (Functional Components, Hooks)
+* **Styling:** Tailwind CSS (Custom Medical Palette & Glassmorphism)
+* **Icons:** Lucide React
+* **Data Source:** JSONPlaceholder API
+* **Build Tool:** Vite (Optimized for MacBook Air M4 performance)
+
+---
+
+## 🏗️ Component Architecture
+
+| Component | Responsibility |
+| :--- | :--- |
+| **StatsHeader** | Real-time counter of available donors in the dataset. |
+| **FilterBar** | Manages search logic and categorical blood-group pill selection. |
+| **DonorList** | The engine that filters and maps the enriched donor data. |
+| **DonorCard** | Handles individual donor state, animations, and the "Request Sent" toggle. |
+
+---
+---
+
+
+# 🪡 Made By ❤️ TechGen_DM
