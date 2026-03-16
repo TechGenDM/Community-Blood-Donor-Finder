@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import StatsHeader from './components/StatsHeader';
 import FilterBar from './components/FilterBar';
 import DonorList from './components/DonorList';
+import SkeletonCard from './components/SkeletonCard';
 
 const BLOOD_GROUPS = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
@@ -68,12 +69,13 @@ function App() {
         />
 
         {loading ? (
-          <div className="glass-panel rounded-2xl flex flex-col items-center justify-center p-32 shadow-sm">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-vitality-red border-opacity-80"></div>
-            <p className="mt-6 text-gray-500 font-medium text-lg animate-pulse">Loading Donor Network...</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {[...Array(6)].map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
           </div>
         ) : (
-          <DonorList donors={filteredDonors} />
+          <DonorList donors={filteredDonors} searchQuery={searchQuery} />
         )}
       </div>
     </div>

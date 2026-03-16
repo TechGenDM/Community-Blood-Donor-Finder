@@ -1,7 +1,7 @@
 import React from 'react';
 import DonorCard from './DonorCard';
 
-export default function DonorList({ donors }) {
+export default function DonorList({ donors, searchQuery }) {
   if (donors.length === 0) {
     return (
       <div className="glass-panel rounded-2xl p-16 text-center shadow-sm border-dashed border-2 border-gray-300/50 bg-white/30">
@@ -17,7 +17,7 @@ export default function DonorList({ donors }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {donors.map((donor) => (
-        <DonorCard key={donor.id} donor={donor} />
+        <DonorCard key={donor.id} donor={donor} searchQuery={searchQuery} />
       ))}
     </div>
   );

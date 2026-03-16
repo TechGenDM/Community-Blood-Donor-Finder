@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react';
 
-export default function DonorCard({ donor }) {
-  const [requestSent, setRequestSent] = useState(false);
+export default function DonorCard({ donor, searchQuery }) {
+  const [requestSent, setRequestSent] = useState(() => {
+    return localStorage.getItem(`donor_request_${donor.id}`) === 'true';
+  });
 
   const handleRequest = () => {
     if (!requestSent && donor.isAvailable) {
       setRequestSent(true);
+      localStorage.setItem(`donor_request_${donor.id}`, 'true');
     }
+  };
+
+  const highlightText = (text, highlight) => {
+    if (!highlight || !highlight.trim()) return text;
+    const regex = new RegExp(`(${highlight})`, 'gi');
+    const parts = text.split(regex);
+    return parts.map((part, i) => 
+      regex.test(part) ? <mark key={i} className="bg-yellow-200 text-gray-900 rounded-sm px-0.5">{part}</mark> : part
+    );
   };
 
   return (
@@ -38,10 +50,14 @@ export default function DonorCard({ donor }) {
         
         {/* Donor Info */}
         <div className="pr-16">
-          <h3 className="text-xl font-bold text-gray-800 m-0 leading-tight">{donor.name}</h3>
+          <h3 className="text-xl font-bold text-gray-800 m-0 leading-tight">
+            {highlightText(donor.name, searchQuery)}
+          </h3>
           <div className="flex items-center gap-1 mt-1.5 text-gray-500">
             <MapPin size={14} className="text-vitality-red/70" />
-            <span className="text-sm font-medium">{donor.address?.city || 'Unknown City'}</span>
+            <span className="text-sm font-medium">
+              {highlightText(donor.address?.city || 'Unknown City', searchQuery)}
+            </span>
           </div>
         </div>
       </div>
